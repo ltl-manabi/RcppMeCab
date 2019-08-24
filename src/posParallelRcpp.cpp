@@ -83,6 +83,7 @@ struct TextParseDF
           parsed.push_back(features[0]);
           parsed.push_back(features[1]);
           parsed.push_back(features[7]);
+	  parsed.push_back(features[6]);
         }
       }
 
@@ -224,12 +225,14 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
   StringVector pos;
   StringVector subtype;
   StringVector analytic;
+  StringVector base;
 
   String doc_id_t;
   String token_t;
   String pos_t;
   String subtype_t;
   String analytic_t;
+  String base_t;
 
   int doc_number = 0;
   int sentence_number = 1;
@@ -279,11 +282,12 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
   // explicit type conversion
   for (size_t k = 0; k < results.size(); ++k) {
-    for (size_t l = 0; l < results[k].size(); l += 4) {
+    for (size_t l = 0; l < results[k].size(); l += 5) {
       token_t = results[k][l];
       pos_t = results[k][l + 1];
       subtype_t = results[k][l + 2];
       analytic_t = results[k][l + 3];
+      base_t = results[k][l + 4];
 
       if (subtype_t == "*") {
         subtype_t = "";
@@ -293,15 +297,21 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
         analytic_t = "";
       }
 
+      if (base_t == "*") {
+	      base_t = "";
+      }
+
       token_t.set_encoding(CE_UTF8);
       pos_t.set_encoding(CE_UTF8);
       subtype_t.set_encoding(CE_UTF8);
       analytic_t.set_encoding(CE_UTF8);
+      base_t.set_encoding(CE_UTF8);
 
       token.push_back(token_t);
       pos.push_back(pos_t);
       subtype.push_back(subtype_t);
       analytic.push_back(analytic_t);
+      base.push_back(base_t);
 
       token_id.push_back(token_number);
       token_number++;
@@ -328,7 +338,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
     doc_number++;
   }
 
-  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["analytic"]=analytic);
+  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["analytic"]=analytic, _["base"]=base);
 }
 
 // [[Rcpp::export]]
