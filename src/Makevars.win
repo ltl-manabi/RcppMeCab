@@ -36,7 +36,7 @@ all:    	MeCabLibrary $(SHLIB)
 ## in order to see commands as they happens add a 'v' to the tar and cp commands
 MeCabLibrary:
 		@if [ ! -d ../mecab/win/$(FLV) ]; then mkdir -p ../mecab/win/$(FLV); fi
-		@if [ ! -f ../mecab/win/$(FLV)/MeCabLibrary.tar.gz ]; then `"$(R_HOME)/bin$(R_ARCH_BIN)/Rscript.exe" -e "download.file(url='https://raw.githubusercontent.com/ltl-manabi/R/master/mecab64_ja.tar.gz', destfile='../mecab/win/$(FLV)/mecab64_ja.tar.gz', quiet=TRUE)"`; tar xfz ../mecab/win/$(FLV)/mecab64_ja.tar.gz; fi
+		@if [ ! -f ../mecab/win/$(FLV)/MeCabLibrary.tar.gz ]; then `"$(R_HOME)/bin$(R_ARCH_BIN)/Rscript.exe" -e "download.file(url='https://raw.githubusercontent.com/ltl-manabi/R/master/mecab$(WIN)_$(MECAB_LANG).tar.gz', destfile='../mecab/win/$(FLV)/mecab$(WIN)_$(MECAB_LANG).tar.gz', quiet=TRUE)"`; tar xfz ../mecab/win/$(FLV)/mecab$(WIN)_$(MECAB_LANG).tar.gz; fi
 		@if [ ! -d $(FLV) ]; then mkdir -p $(FLV); fi
 		@cp libmecab.dll $(FLV)
 		@if [ ! -d ../inst/libs/$(FLV) ]; then mkdir -p ../inst/libs/$(FLV); fi
