@@ -318,7 +318,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
       // append sentence_id and token_id
       sentence_id.push_back(sentence_number);
-      if (token_t == "." or token == "．" or token_t == "。") {
+      if (token_t == "." or token_t == "．" or token_t == "。") {
         sentence_number++;
         token_number = 1;
       }
