@@ -83,7 +83,7 @@ struct TextParseDF
           parsed.push_back(features[0]);
           parsed.push_back(features[1]);
           parsed.push_back(features[7]);
-	  parsed.push_back(features[6]);
+      	  parsed.push_back(features[6]);
         }
       }
 
@@ -318,7 +318,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
       // append sentence_id and token_id
       sentence_id.push_back(sentence_number);
-      if (token_t == "." or token_t == "。") {
+      if (token_t == "." or token == "．" or token_t == "。") {
         sentence_number++;
         token_number = 1;
       }
@@ -338,7 +338,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
     doc_number++;
   }
 
-  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["analytic"]=analytic, _["base"]=base);
+  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["base"]=base);
 }
 
 // [[Rcpp::export]]
