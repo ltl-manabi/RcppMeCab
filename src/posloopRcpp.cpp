@@ -273,7 +273,7 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         pos_t = features[0];
         subtype_t = features[1];
         analytic_t = features[7];
-	base_t = features[6];
+      	base_t = features[6];
 
         if (subtype_t == "*") {
           subtype_t = "";
