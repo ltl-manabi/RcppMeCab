@@ -231,7 +231,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
   String token_t;
   String pos_t;
   String subtype_t;
-//  String analytic_t;
+  String analytic_t;
   String base_t;
 
   int doc_number = 0;
