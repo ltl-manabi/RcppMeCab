@@ -82,8 +82,8 @@ struct TextParseDF
           parsed.push_back(parsed_morph);
           parsed.push_back(features[0]);
           parsed.push_back(features[1]);
-          parsed.push_back(features[7]);
       	  parsed.push_back(features[6]);
+          parsed.push_back(features[7]);
         }
       }
 
@@ -286,9 +286,9 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
       token_t = results[k][l];
       pos_t = results[k][l + 1];
       subtype_t = results[k][l + 2];
-      analytic_t = results[k][l + 3];
-      base_t = results[k][l + 4];
-
+      base_t = results[k][l + 3];
+      analytic_t = results[k][l + 4];
+ 
       if (subtype_t == "*") {
         subtype_t = "";
       }
