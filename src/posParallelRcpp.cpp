@@ -338,7 +338,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
     doc_number++;
   }
 
-  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["analytic"]=analytic, _["base"]=base);
+  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["base"]=base, _["yomi"]=analytic);
 }
 
 // [[Rcpp::export]]

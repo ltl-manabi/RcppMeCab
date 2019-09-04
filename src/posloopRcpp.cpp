@@ -272,16 +272,16 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         token_t = std::string(node->surface).substr(0, node->length);
         pos_t = features[0];
         subtype_t = features[1];
-//        analytic_t = features[7];
+        analytic_t = features[7];
       	base_t = features[6];
 
         if (subtype_t == "*") {
           subtype_t = "";
         }
 
-//        if (analytic_t == "*") {
-//          analytic_t = "";
-//        }
+        if (analytic_t == "*") {
+          analytic_t = "";
+        }
 
       	if (base_t == "*") {
 		      base_t = token_t;
@@ -290,14 +290,14 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         token_t.set_encoding(CE_UTF8);
         pos_t.set_encoding(CE_UTF8);
         subtype_t.set_encoding(CE_UTF8);
-//        analytic_t.set_encoding(CE_UTF8);
+        analytic_t.set_encoding(CE_UTF8);
 	      base_t.set_encoding(CE_UTF8);
 
         // append token, pos, and subtype
         token.push_back(token_t);
         pos.push_back(pos_t);
         subtype.push_back(subtype_t);
-//        analytic.push_back(analytic_t);
+        analytic.push_back(analytic_t);
 	      base.push_back(base_t);
 
         token_id.push_back(token_number);
@@ -334,5 +334,5 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
   mecab_lattice_destroy(lattice);
   mecab_model_destroy(model);
 
-  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["base"]=base);
+  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["base"]=base, _["yomi"]=analytic);
 }
