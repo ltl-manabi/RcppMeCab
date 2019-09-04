@@ -282,20 +282,20 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
   // explicit type conversion
   for (size_t k = 0; k < results.size(); ++k) {
-    for (size_t l = 0; l < results[k].size(); l += 7) {
+    for (size_t l = 0; l < results[k].size(); l += 5) {
       token_t = results[k][l];
       pos_t = results[k][l + 1];
       subtype_t = results[k][l + 2];
-//      analytic_t = results[k][l + 3];
-      base_t = results[k][l + 6];
+      analytic_t = results[k][l + 3];
+      base_t = results[k][l + 4];
 
       if (subtype_t == "*") {
         subtype_t = "";
       }
 
-//      if (analytic_t == "*") {
-//        analytic_t = "";
-//      }
+      if (analytic_t == "*") {
+        analytic_t = "";
+      }
 
       if (base_t == "*") {
 	      base_t = token_t;
@@ -304,13 +304,13 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
       token_t.set_encoding(CE_UTF8);
       pos_t.set_encoding(CE_UTF8);
       subtype_t.set_encoding(CE_UTF8);
-//      analytic_t.set_encoding(CE_UTF8);
+      analytic_t.set_encoding(CE_UTF8);
       base_t.set_encoding(CE_UTF8);
 
       token.push_back(token_t);
       pos.push_back(pos_t);
       subtype.push_back(subtype_t);
-//      analytic.push_back(analytic_t);
+      analytic.push_back(analytic_t);
       base.push_back(base_t);
 
       token_id.push_back(token_number);
@@ -338,7 +338,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
     doc_number++;
   }
 
-  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["base"]=base);
+  return DataFrame::create(_["doc_id"]=doc_id, _["sentence_id"]=sentence_id, _["token_id"]=token_id, _["token"]=token, _["pos"]=pos, _["subtype"]=subtype, _["analytic"]=analytic, _["base"]=base);
 }
 
 // [[Rcpp::export]]
