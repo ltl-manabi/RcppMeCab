@@ -6,16 +6,22 @@ This package, RcppMeCab, is a `Rcpp` wrapper for the part-of-speech morphologica
 
 改変してから1年近く経っているので、具体的にどこをどういじったかは覚えていません...
 
+64bit Windowsでは、先に[「野良ビルドの64bit版MeCab」](https://github.com/ikegami-yukino/mecab/releases/download/v0.996.2/mecab-64-0.996.2.exe)をインストールしてください。
+
 日本語環境 (WindowsとLinuxは検証済) では、本リポジトリから、以下のようにインストールしてください。
 
- Sys.setenv(MECAB_LANG = "ja")
- remotes::install_github("ltl-manabi/RcppMeCab")
+```
+Sys.setenv(MECAB_LANG = "ja")
+remotes::install_github("ltl-manabi/RcppMeCab")
+```
 
 なお、Windows環境では、RcppMeCabはUTF-8を前提とするのに対し、OSの文字コードはShift-JIS (CP932) なので、そのまま文字列を与えることはできません。`utf8` パッケージの `as_utf8()` 関数や標準の `iconv()` 関数などを使い、以下のようにするとうまく処理できます。ただし、UTF-8にあって、CP932にない文字がどうなるかは知りません。
 
- library(utf8)
- library(RcppMeCab)
- pos(as_utf8("隣の客はよく柿食う客だ。"))
+```
+library(utf8)
+library(RcppMeCab)
+pos(as_utf8("隣の客はよく柿食う客だ。"))
+```
 
 以下は、オリジナルのREADMEです。
 
