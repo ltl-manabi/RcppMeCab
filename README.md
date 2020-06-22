@@ -2,6 +2,23 @@
 
 This package, RcppMeCab, is a `Rcpp` wrapper for the part-of-speech morphological analyzer `MeCab`. It supports native utf-8 encoding in C++ code and CJK (Chinese, Japanese, and Korean) MeCab library. This package fully utilizes the power `Rcpp` brings `R` computation to analyze texts faster.
 
+日本語Windows環境でうまく動かない部分 (64bit MeCabを想定しているが、添付DLLが32bit版など) があったので、少し修正しました。また、出力形式に `data.frame` を追加し、日本語向けに原形も出力するようにしました (C, KのMeCabでどういう動作になるかは知りません)。
+
+改変してから1年近く経っているので、具体的にどこをどういじったかは覚えていません...
+
+日本語環境 (WindowsとLinuxは検証済) では、本リポジトリから、以下のようにインストールしてください。
+
+ Sys.setenv(MECAB_LANG = "ja")
+ remotes::install_github("ltl-manabi/RcppMeCab")
+
+なお、Windows環境では、RcppMeCabはUTF-8を前提とするのに対し、OSの文字コードはShift-JIS (CP932) なので、そのまま文字列を与えることはできません。`utf8` パッケージの `as_utf8()` 関数や標準の `iconv()` 関数などを使い、以下のようにするとうまく処理できます。ただし、UTF-8にあって、CP932にない文字がどうなるかは知りません。
+
+ library(utf8)
+ library(RcppMeCab)
+ pos(as_utf8("隣の客はよく柿食う客だ。"))
+
+以下は、オリジナルのREADMEです。
+
 ## Installation
 
 ### Linux and Mac OSX
