@@ -2,11 +2,13 @@
 
 This package, RcppMeCab, is a `Rcpp` wrapper for the part-of-speech morphological analyzer `MeCab`. It supports native utf-8 encoding in C++ code and CJK (Chinese, Japanese, and Korean) MeCab library. This package fully utilizes the power `Rcpp` brings `R` computation to analyze texts faster.
 
-日本語Windows環境でうまく動かない部分 (64bit MeCabを想定しているが、添付DLLが32bit版など) があったので、少し修正しました。また、出力形式に `data.frame` を追加し、日本語向けに原形も出力するようにしました (C, KのMeCabでどういう動作になるかは知りません)。
+日本語Windows環境でうまく動かない部分 (64bit MeCabを想定しているが、添付DLLが32bit版など) があったので、少し修正しました。また、出力フォーマットに、日本語向けに原形と読みも出力するようにしました (C, KのMeCabでどういう動作になるかは知りません)。
 
 改変してから1年近く経っているので、具体的にどこをどういじったかは覚えていません...
 
-64bit Windowsでは、先に[「野良ビルドの64bit版MeCab」](https://github.com/ikegami-yukino/mecab/releases/download/v0.996.2/mecab-64-0.996.2.exe)をインストールしてください。
+64bit Windowsでは、先に[「野良ビルドの64bit版MeCab」](https://github.com/ikegami-yukino/mecab/releases/download/v0.996.2/mecab-64-0.996.2.exe)をインストールしてください。Linuxでは、各ディストリビューションのパッケージ管理システムなどから、MeCabをインストールしてください。例えば、Ubuntuでは[aptでインストールできます。](https://qiita.com/SUZUKI_Masaya/items/685000d569452585210c)
+
+また、より新しい形態素解析辞書を提供する[mecab-ipadic-neologd](https://github.com/neologd/mecab-ipadic-neologd/blob/master/README.ja.md)も導入すると良いでしょう。**RcppMeCabは、Neologd辞書が出力する、スペースを含む形態素も正常に扱えます。**ただし、WindowsでNeologd辞書のインストールは、[いろいろと面倒です。](https://qiita.com/zincjp/items/c61c441426b9482b5a48)
 
 日本語環境 (WindowsとLinuxは検証済) では、本リポジトリから、以下のようにインストールしてください。
 
