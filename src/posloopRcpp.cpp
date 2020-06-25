@@ -284,7 +284,7 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         }
 
       	if (base_t == "*") {
-		      base_t = token_t;
+		      base_t = std::string(node->surface).substr(0, node->length);
       	}
 
         token_t.set_encoding(CE_UTF8);

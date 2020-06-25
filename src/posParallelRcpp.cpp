@@ -298,7 +298,7 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
       }
 
       if (base_t == "*") {
-	      base_t = token_t;
+        base_t = results[k][l];
       }
 
       token_t.set_encoding(CE_UTF8);
