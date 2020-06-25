@@ -208,14 +208,14 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
   StringVector token;
   StringVector pos;
   StringVector subtype;
-//  StringVector analytic;
+  StringVector analytic;
   StringVector base;
 
   String doc_id_t;
   String token_t;
   String pos_t;
   String subtype_t;
-//  String analytic_t;
+  String analytic_t;
   String base_t;
 
   int doc_number = 0;
@@ -272,16 +272,16 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         token_t = std::string(node->surface).substr(0, node->length);
         pos_t = features[0];
         subtype_t = features[1];
-//        analytic_t = features[7];
+        analytic_t = features[7];
       	base_t = features[6];
 
         if (subtype_t == "*") {
           subtype_t = "";
         }
 
-//        if (analytic_t == "*") {
-//          analytic_t = "";
-//        }
+        if (analytic_t == "*") {
+          analytic_t = "";
+        }
 
       	if (base_t == "*") {
 		      base_t = token_t;
@@ -290,14 +290,14 @@ DataFrame posDFRcpp(StringVector text, std::string sys_dic, std::string user_dic
         token_t.set_encoding(CE_UTF8);
         pos_t.set_encoding(CE_UTF8);
         subtype_t.set_encoding(CE_UTF8);
-//        analytic_t.set_encoding(CE_UTF8);
+        analytic_t.set_encoding(CE_UTF8);
 	      base_t.set_encoding(CE_UTF8);
 
         // append token, pos, and subtype
         token.push_back(token_t);
         pos.push_back(pos_t);
         subtype.push_back(subtype_t);
-//        analytic.push_back(analytic_t);
+        analytic.push_back(analytic_t);
 	      base.push_back(base_t);
 
         token_id.push_back(token_number);

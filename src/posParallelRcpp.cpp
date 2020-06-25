@@ -224,14 +224,14 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
   StringVector token;
   StringVector pos;
   StringVector subtype;
-//  StringVector analytic;
+  StringVector analytic;
   StringVector base;
 
   String doc_id_t;
   String token_t;
   String pos_t;
   String subtype_t;
-//  String analytic_t;
+  String analytic_t;
   String base_t;
 
   int doc_number = 0;
@@ -282,21 +282,20 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
   // explicit type conversion
   for (size_t k = 0; k < results.size(); ++k) {
-//    for (size_t l = 0; l < results[k].size(); l += 5) {
-    for (size_t l = 0; l < results[k].size(); l += 4) {
+    for (size_t l = 0; l < results[k].size(); l += 5) {
       token_t = results[k][l];
       pos_t = results[k][l + 1];
       subtype_t = results[k][l + 2];
       base_t = results[k][l + 3];
-//      analytic_t = results[k][l + 4];
+      analytic_t = results[k][l + 4];
  
       if (subtype_t == "*") {
         subtype_t = "";
       }
 
-//      if (analytic_t == "*") {
-//        analytic_t = "";
-//      }
+      if (analytic_t == "*") {
+        analytic_t = "";
+      }
 
       if (base_t == "*") {
 	      base_t = token_t;
@@ -305,13 +304,13 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
       token_t.set_encoding(CE_UTF8);
       pos_t.set_encoding(CE_UTF8);
       subtype_t.set_encoding(CE_UTF8);
-//      analytic_t.set_encoding(CE_UTF8);
+      analytic_t.set_encoding(CE_UTF8);
       base_t.set_encoding(CE_UTF8);
 
       token.push_back(token_t);
       pos.push_back(pos_t);
       subtype.push_back(subtype_t);
-//      analytic.push_back(analytic_t);
+      analytic.push_back(analytic_t);
       base.push_back(base_t);
 
       token_id.push_back(token_number);
