@@ -282,7 +282,8 @@ DataFrame posParallelDFRcpp( StringVector text, std::string sys_dic, std::string
 
   // explicit type conversion
   for (size_t k = 0; k < results.size(); ++k) {
-    for (size_t l = 0; l < results[k].size(); l += 5) {
+//    for (size_t l = 0; l < results[k].size(); l += 5) {
+    for (size_t l = 0; l < results[k].size(); l += 4) {
       token_t = results[k][l];
       pos_t = results[k][l + 1];
       subtype_t = results[k][l + 2];
